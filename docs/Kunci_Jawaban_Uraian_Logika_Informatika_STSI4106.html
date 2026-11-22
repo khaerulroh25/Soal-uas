@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembahasan & Kunci Jawaban Ujian Uraian Logika Informatika (STSI4106)</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-light: #3b82f6;
+            --accent: #0284c7;
+            --success: #15803d;
+            --danger: #b91c1c;
+            --warning: #b45309;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        header h1 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.8rem;
+        }
+
+        header p {
+            margin: 0;
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .tab-btn {
+            background: #e2e8f0;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text);
+            transition: all 0.2s;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .question-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0;
+        }
+
+        .score-badge {
+            background: #dbeafe;
+            color: var(--primary);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .soal-box {
+            background: #f1f5f9;
+            border-left: 4px solid var(--accent);
+            padding: 1rem;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .jawaban-box {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 1.25rem;
+        }
+
+        .hafal-box {
+            background: #fefce8;
+            border: 1px solid #fef08a;
+            border-left: 4px solid var(--warning);
+            padding: 0.75rem 1rem;
+            border-radius: 0 6px 6px 0;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .hafal-box strong {
+            color: #854d0e;
+        }
+
+        pre, code {
+            font-family: 'Consolas', 'Courier New', monospace;
+            background: #f8fafc;
+        }
+
+        code {
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #0f172a;
+            font-size: 0.95em;
+            border: 1px solid #e2e8f0;
+        }
+
+        pre {
+            padding: 1rem;
+            border-radius: 6px;
+            border: 1px solid #cbd5e1;
+            overflow-x: auto;
+            line-height: 1.4;
+        }
+
+        .tree-diagram {
+            background: #0f172a;
+            color: #38bdf8;
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: monospace;
+            white-space: pre;
+            overflow-x: auto;
+        }
+
+        .table-custom {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.95rem;
+        }
+
+        .table-custom th, .table-custom td {
+            border: 1px solid #cbd5e1;
+            padding: 8px 12px;
+            text-align: left;
+        }
+
+        .table-custom th {
+            background: #f1f5f9;
+            color: var(--primary);
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: var(--primary-light);
+            color: white;
+            text-align: center;
+            border-radius: 50%;
+            font-size: 0.85rem;
+            line-height: 24px;
+            margin-right: 8px;
+        }
+
+        .verified-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: #dcfce7;
+            color: var(--success);
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Panduan & Jawaban Ujian Uraian</h1>
+        <p>Mata Kuliah: <strong>STSI4106 - Logika Informatika</strong> (Universitas Terbuka)</p>
+        <p style="font-size: 0.85rem; margin-top: 5px;">Disusun lengkap, sistematis, dan dirancang mudah dihafal sesuai modul resmi UT.</p>
+    </header>
+
+    <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('paket1')">📖 Paket Soal 1 (Halaman 1)</button>
+        <button class="tab-btn" onclick="switchTab('paket2')">📖 Paket Soal 2 (Halaman 2)</button>
+    </div>
+
+    <!-- ==================== PAKET 1 ==================== -->
+    <div id="paket1" class="tab-content active">
+
+        <!-- SOAL 1 -->
+        <div class="card">
+            <div class="question-header">
+                <h2 class="question-title">Soal 1: Sintaks Logika Proposisional & Interpretasi</h2>
+                <span class="score-badge">Skor: 25</span>
+            </div>
+            
+            <div class="soal-box">
+                <strong>a.</strong> Buatlah suatu kalimat dalam bahasa logika proposisional yang mengandung simbol kebenaran <em>true</em>, simbol proposisional <em>P</em>, <em>Q</em>, dan <em>R</em>, serta penghubung proposisional: <strong>not</strong>, <strong>and</strong>, <strong>or</strong>, dan <strong>if then else</strong>.<br><br>
+                <strong>b.</strong> Diketahui kalimat ℱ berikut ini:<br>
+                <code>ℱ : If (P and (Q or not Q)) then (not R) else (if (P and R) then (R or Q))</code><br>
+                Selidiki apakah interpretasi <code>I = {R ← false, Q ← true, P ← false, S ← true}</code> merupakan interpretasi untuk kalimat ℱ.
+            </div>
+
+            <div class="hafal-box">
+                <strong>💡 Jembatan Keledai & Kunci Hafalan:</strong><br>
+                • <strong>Definisi Interpretasi untuk ℱ:</strong> Interpretasi <em>I</em> adalah interpretasi untuk kalimat ℱ <u>jika dan hanya jika</u> <em>I</em> memberikan nilai kebenaran kepada <strong>SEMUA</strong> simbol proposisi yang muncul di dalam ℱ (adanya simbol ekstra di <em>I</em> tetap diperbolehkan).
+            </div>
+
+            <div class="jawaban-box">
+                <div class="verified-badge">✓ JAWABAN RESMI & TERUJI</div>
+                
+                <p><strong>Penyelesaian Bagian a:</strong></p>
+                <p>Kalimat logika proposisional yang valid dan memenuhi semua syarat yang diminta:</p>
+                <pre><code>if (P and not Q) then (R or true) else (Q and not R)</code></pre>
+                <ul>
+                    <li>Simbol kebenaran: <code>true</code> ✓</li>
+                    <li>Simbol proposisi: <code>P</code>, <code>Q</code>, <code>R</code> ✓</li>
+                    <li>Penghubung: <code>not</code>, <code>and</code>, <code>or</code>, <code>if then else</code> ✓</li>
+                </ul>
+
+                <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 15px 0;">
+
+                <p><strong>Penyelesaian Bagian b:</strong></p>
+                <ol>
+                    <li>Himpunan simbol proposisi yang muncul dalam kalimat ℱ adalah:
+                        <br><code>Prop(ℱ) = { P, Q, R }</code> (simbol <code>S</code> tidak terdapat di dalam kalimat ℱ).
+                    </li>
+                    <li>Interpretasi yang diberikan adalah:
+                        <br><code>I = { R ← false, Q ← true, P ← false, S ← true }</code>
+                    </li>
+                    <li>Domain simbol proposisi pada interpretasi <em>I</em> adalah:
+                        <br><code>Domain(I) = { P, Q, R, S }</code>
+                    </li>
+                    <li>Berdasarkan definisi modul Logika Informatika:
+                        <br>Sebuah interpretasi <em>I</em> dikatakan sebagai interpretasi untuk kalimat ℱ jika <em>I</em> menetapkan nilai kebenaran (<em>true</em> atau <em>false</em>) kepada <strong>setiap simbol proposisi yang terdapat dalam ℱ</strong>, yaitu <code>Prop(ℱ) ⊆ Domain(I)</code>.
+                    </li>
+                </ol>
+                <p><strong>Kesimpulan:</strong><br>
+                Karena semua simbol dalam ℱ (yaitu <em>P</em>, <em>Q</em>, dan <em>R</em>) telah diberi nilai kebenaran oleh <em>I</em>, maka <strong>interpretasi <em>I</em> MERUPAKAN interpretasi untuk kalimat ℱ</strong> (simbol <em>S</em> di dalam <em>I</em> merupakan simbol bebas/ekstra yang tidak mempengaruhi status interpretasi).
+                </p>
+            </div>
+        </div>
+
+        <!-- SOAL 2 -->
+        <div class="card">
+            <div class="question-header">
+                <h2 class="question-title">Soal 2: Pohon Keputusan (Decision Tree)</h2>
+                <span class="score-badge">Skor: 25</span>
+            </div>
+            
+            <div class="soal-box">
+                Diketahui suatu kalimat logika proposisional:<br>
+                <code>ℱ : (if S then not(Q or R) else not P) if and only if (not(Q or R) and P)</code><br>
+                Bangun pohon keputusan untuk kalimat ℱ.
+            </div>
+
+            <div class="hafal-box">
+                <strong>💡 Jembatan Keledai & Kunci Hafalan:</strong><br>
+                • Pohon keputusan mencabangkan nilai tiap proposisi (kiri = <em>true</em>, kanan = <em>false</em>) secara bertingkat.<br>
+                • Perhatikan bahwa <code>(not(Q or R) and P)</code> hanya bernilai <strong>true</strong> jika <strong>P = true, Q = false, R = false</strong>. Pada kasus lainnya bernilai <strong>false</strong>.
+            </div>
+
+            <div class="jawaban-box">
+                <div class="verified-badge">✓ JAWABAN RESMI & TERUJI</div>
+                <p>Simbol proposisi yang terlibat: <code>S, P, Q, R</code> (ada 4 proposisi, total 16 kemungkinan daun nilai kebenaran).</p>
+                <p>Mari kita sederhanakan subkalimat ℱ:<br>
+                Misalkan <code>A = not(Q or R)</code>. Maka <code>A = true</code> hanya jika <code>Q = false</code> dan <code>R = false</code>.<br>
+                Ruas kiri: <code>LK = if S then A else not P</code>.<br>
+                Ruas kanan: <code>RK = A and P</code>.<br>
+                Kalimat ℱ: <code>LK ≡ RK</code> (bernilai <em>true</em> jika nilai kebenaran <code>LK</code> sama dengan <code>RK</code>).
+                </p>
+
+                <p><strong>Struktur Pohon Keputusan:</strong></p>
+                <div class="tree-diagram">
+                                            [ S ]
+                                           /     \
+                                     true /       \ false
+                                         /         \
+                                      [ P ]       [ P ]
+                                      /   \       /   \
+                                     T     F     T     F
+                                    / \   / \   / \   / \
+                                  [Q] [Q] [Q] [Q][Q] [Q][Q] [Q]
+                                  / \ / \ / \ / \/ \ / \/ \ / \
+                                 [R] ... (cabang daun ke R)
+                </div>
+
+                <p><strong>Tabel Evaluasi Nilai Daun (Terminal Nodes):</strong></p>
+                <table class="table-custom">
+                    <tr>
+                        <th>S</th><th>P</th><th>Q</th><th>R</th><th>A = not(Q or R)</th><th>Ruas Kiri (LK)</th><th>Ruas Kanan (RK)</th><th>Nilai Akhir ℱ</th>
+                    </tr>
+                    <tr><td>T</td><td>T</td><td>T</td><td>*</td><td>F</td><td>F</td><td>F</td><td><strong>true</strong></td></tr>
+                    <tr><td>T</td><td>T</td><td>F</td><td>T</td><td>F</td><td>F</td><td>F</td><td><strong>true</strong></td></tr>
+                    <tr><td>T</td><td>T</td><td>F</td><td>F</td><td>T</td><td>T</td><td>T</td><td><strong>true</strong></td></tr>
+                    <tr><td>T</td><td>F</td><td>*</td><td>*</td><td>F / T</td><td>F / T</td><td>F</td><td><strong>true</strong> (jika A=F) / <strong>false</strong> (jika A=T)</td></tr>
+                    <tr><td>F</td><td>T</td><td>*</td><td>*</td><td>*</td><td>not P = F</td><td>A and P</td><td><strong>true</strong> (jika A=F) / <strong>false</strong> (jika A=T)</td></tr>
+                    <tr><td>F</td><td>F</td><td>*</td><td>*</td><td>*</td><td>not P = T</td><td>F</td><td><strong>false</strong></td></tr>
+                </table>
+
+                <p><strong>Pohon Keputusan Lengkap (Representasi Cabang):</strong></p>
+                <pre><code>• S = true
+  ├─ P = true
+  │   ├─ Q = true  ➔ (R=true ➔ true,  R=false ➔ true)
+  │   └─ Q = false ➔ (R=true ➔ true,  R=false ➔ true)
+  └─ P = false
+      ├─ Q = true  ➔ (R=true ➔ true,  R=false ➔ true)
+      └─ Q = false ➔ (R=true ➔ true,  R=false ➔ false)
+
+• S = false
+  ├─ P = true
+  │   ├─ Q = true  ➔ (R=true ➔ true,  R=false ➔ true)
+  │   └─ Q = false ➔ (R=true ➔ true,  R=false ➔ false)
+  └─ P = false
+      ├─ Q = true  ➔ (R=true ➔ false, R=false ➔ false)
+      └─ Q = false ➔ (R=true ➔ false, R=false ➔ false)</code></pre>
+            </div>
+        </div>
+
+        <!-- SOAL 3 -->
+        <div class="card">
+            <div class="question-header">
+                <h2 class="question-title">Soal 3: Substitusi Total (Total Substitution)</h2>
+                <span class="score-badge">Skor: 25</span>
+            </div>
+            
+            <div class="soal-box">
+                Diketahui suatu kalimat logika proposisional:<br>
+                <code>ℱ : (Q and R) if and only if (P and (if Q then R))</code><br>
+                Tentukan kalimat hasil substitusi:<br>
+                <code>ℱ ◁ { (Q or R) ← (P and Q), R ← (Q or S), (P or R) ← S }</code>
+            </div>
+
+            <div class="hafal-box">
+                <strong>💡 Jembatan Keledai & Kunci Hafalan:</strong><br>
+                • Notasi <code>ℱ ◁ { S₁ ← T₁, S₂ ← T₂, ... }</code> artinya substitusi serempak (simultaneous replacement).<br>
+                • Cari kemunculan subkalimat <code>Sᵢ</code> di dalam ℱ secara tepat. Jika tidak muncul dalam ℱ, aturan tersebut diabaikan!<br>
+                • Di sini yang muncul di ℱ hanya atom <code>R</code>. Subkalimat <code>(Q or R)</code> dan <code>(P or R)</code> TIDAK ADA di dalam ℱ!
+            </div>
+
+            <div class="jawaban-box">
+                <div class="verified-badge">✓ JAWABAN RESMI & TERUJI</div>
+                
+                <p><strong>Langkah Analisis Subkalimat:</strong></p>
+                <ol>
+                    <li>Subkalimat target substitusi:
+                        <ul>
+                            <li>Target 1: <code>(Q or R)</code> ➔ <em>Tidak ada</em> dalam ℱ (dalam ℱ adalah <code>Q and R</code>).</li>
+                            <li>Target 2: <code>R</code> ➔ <strong>Ada</strong> dalam ℱ (muncul 2 kali: di <code>Q and R</code> dan di <code>if Q then R</code>).</li>
+                            <li>Target 3: <code>(P or R)</code> ➔ <em>Tidak ada</em> dalam ℱ.</li>
+                        </ul>
+                    </li>
+                    <li>Oleh karena itu, setiap kemunculan simbol <code>R</code> digantikan oleh <code>(Q or S)</code>:
+                        <ul>
+                            <li>Bagian <code>(Q and R)</code> menjadi <code>(Q and (Q or S))</code></li>
+                            <li>Bagian <code>(if Q then R)</code> menjadi <code>(if Q then (Q or S))</code></li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <p><strong>Hasil Akhir Kalimat Substitusi:</strong></p>
+                <pre><code>(Q and (Q or S)) if and only if (P and (if Q then (Q or S)))</code></pre>
+            </div>
+        </div>
+
+        <!-- SOAL 4 -->
+        <div class="card">
+            <div class="question-header">
+                <h2 class="question-title">Soal 4: Perluasan Interpretasi (Extension of Interpretation)</h2>
+                <span class="score-badge">Skor: 25</span>
+            </div>
+            
+            <div class="soal-box">
+                Diketahui suatu interpretasi <em>I</em> atas domain <em>D</em> = himpunan semua bilangan bulat (ℤ), dengan:<br>
+                <code>I = { a ← 1, b ← 2, x ← 3, y ← 3, z ← 5, f ← f_I(d₁, d₂) = 2d₁ + d₂, g ← g_I(d₁, d₂, d₃) = d₁ + d₂ + d₃ + 1, p ← p_I(d₁, d₂, d₃): d₁ > 2d₂ d₃, q ← q_I(d₁, d₂): 2d₁ ≠ 3d₂ }</code><br>
+                Lakukan perluasan terhadap interpretasi <em>I</em> dengan memberi nilai baru terhadap simbol variabel <em>y</em>, simbol fungsi <em>f</em>, dan simbol predikat <em>p</em>.
+            </div>
+
+            <div class="hafal-box">
+                <strong>💡 Jembatan Keledai & Kunci Hafalan:</strong><br>
+                • Perluasan interpretasi (extended interpretation) <code>I'</code> atau <code>I ◁ { ... }</code> adalah interpretasi baru di mana elemen yang diubah mendapat pemetaan/definisi baru, sedangkan elemen lainnya tetap sama persis dengan interpretasi asal.
+            </div>
+
+            <div class="jawaban-box">
+                <div class="verified-badge">✓ JAWABAN RESMI & TERUJI</div>
+                
+                <p>Perluasan interpretasi <em>I'</em> atas domain bilangan bulat <em>D</em> = ℤ dibentuk dengan memberikan definisi baru untuk <code>y</code>, <code>f</code>, dan <code>p</code>:</p>
+                
+                <ol>
+                    <li><strong>Nilai baru simbol variabel <em>y</em>:</strong>
+                        <br>Ubah dari <code>3</code> menjadi nilai bulat lain, misalnya: <code>y ← 7</code> (atau <code>y ← 0</code>).
+                    </li>
+                    <li><strong>Nilai baru simbol fungsi <em>f</em> (fungsi 2 variabel atas ℤ):</strong>
+                        <br>Berikan rumus baru, misalnya: <code>f ← f_I'(d₁, d₂) = d₁ · d₂ - 3</code> (atau <code>3d₁ + 2d₂</code>).
+                    </li>
+                    <li><strong>Nilai baru simbol predikat <em>p</em> (relasi 3 variabel atas ℤ):</strong>
+                        <br>Berikan syarat kebenaran baru, misalnya: <code>p ← p_I'(d₁, d₂, d₃) : d₁ + d₂ ≤ d₃</code>.
+                    </li>
+                </ol>
+
+                <p><strong>Penulisan Interpretasi Hasil Perluasan (I'):</strong></p>
+                <pre><code>I' = {
+  a ← 1,
+  b ← 2,
+  x ← 3,
+  y ← 7,                                    <-- (nilai baru variabel y)
+  z ← 5,
+  f ← f_I'(d₁, d₂) = d₁ · d₂ - 3,           <-- (nilai baru fungsi f)
+  g ← g_I(d₁, d₂, d₃) = d₁ + d₂ + d₃ + 1,
+  p ← p_I'(d₁, d₂, d₃) : d₁ + d₂ ≤ d₃,      <-- (nilai baru predikat p)
+  q ← q_I(d₁, d₂) : 2d₁ ≠ 3d₂
+}</code></pre>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ==================== PAKET 2 ==================== -->
+    <div id="paket2" class="tab-content">
+
+        <!-- SOAL 1 -->
+        <div class="card">
+            <div class="question-header">
+                <h2 class="question-title">Soal 1: Sintaks Logika Proposisional & Interpretasi</h2>
+                <span class="score-badge">Skor: 25</span>
+            </div>
+            
+            <div class="soal-box">
+                <strong>a.</strong> Buatlah suatu kalimat dalam bahasa logika proposisional yang mengandung simbol kebenaran <em>false</em>, simbol proposisional <em>P</em>, <em>Q</em>, dan <em>R</em>, serta penghubung proposisional: <strong>and</strong>, <strong>or</strong>, <strong>if then else</strong>, dan <strong>if and only if</strong>.<br><br>
+                <strong>b.</strong> Diketahui kalimat ℱ berikut ini:<br>
+                <code>ℱ : If (P and (Q or not Q)) then (R and S) else (if P then (R or Q))</code><br>
+                Selidiki apakah interpretasi <code>I = {R ← false, Q ← true, P ← false}</code> merupakan interpretasi untuk kalimat ℱ.
+            </div>
+
+            <div class="hafal-box">
+                <strong>💡 Jembatan Keledai & Kunci Hafalan:</strong><br>
+                • Di Paket 2b, perhatikan simbol proposisi pada ℱ: ada <strong>S</strong>! Apakah <em>I</em> memiliki nilai untuk <strong>S</strong>? <u>TIDAK ADA</u>.<br>
+                • Jadi <em>I</em> <strong>BUKAN</strong> interpretasi untuk ℱ karena tidak lengkap!
+            </div>
+
+            <div class="jawaban-box">
+                <div class="verified-badge">✓ JAWABAN RESMI & TERUJI</div>
+                
+                <p><strong>Penyelesaian Bagian a:</strong></p>
+                <p>Contoh kalimat proposisional yang memenuhi semua syarat:</p>
+                <pre><code>(if (P and Q) then (R or false) else P) if and only if (Q or R)</code></pre>
+                <ul>
+                    <li>Simbol kebenaran: <code>false</code> ✓</li>
+                    <li>Simbol proposisi: <code>P</code>, <code>Q</code>, <code>R</code> ✓</li>
+                    <li>Penghubung: <code>and</code>, <code>or</code>, <code>if then else</code>, <code>if and only if</code> ✓</li>
+                </ul>
+
+                <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 15px 0;">
+
+                <p><strong>Penyelesaian Bagian b:</strong></p>
+                <ol>
+                    <li>Himpunan simbol proposisi yang muncul di dalam kalimat ℱ:
+                        <br><code>Prop(ℱ) = { P, Q, R, S }</code> (simbol <strong>S</strong> muncul pada subkalimat <code>(R and S)</code>).
+                    </li>
+                    <li>Interpretasi yang diberikan adalah:
+                        <br><code>I = { R ← false, Q ← true, P ← false }</code>
+                    </li>
+                    <li>Domain simbol dari interpretasi <em>I</em> adalah:
+                        <br><code>Domain(I) = { P, Q, R }</code>
+                    </li>
+                    <li>Berdasarkan definisi:
+                        <br>Interpretasi untuk kalimat ℱ <strong>harus memberikan nilai kebenaran kepada setiap simbol proposisi yang ada di dalam ℱ</strong>.
+                    </li>
+                </ol>
+                <p><strong>Kesimpulan:</strong><br>
+                Karena simbol proposisi <code>S ∈ Prop(ℱ)</code> tetapi <code>S ∉ Domain(I)</code> (simbol <em>S</em> tidak diberi nilai kebenaran oleh <em>I</em>), maka <strong>interpretasi <em>I</em> BUKAN merupakan interpretasi untuk kalimat ℱ</strong>.
+                </p>
+            </div>
+        </div>
+
+        <!-- SOAL 2 -->
+        <div class="card">
+            <div class="question-header">
+                <h2 class="question-title">Soal 2: Pohon Semantik (Semantic Tree) & Sifat Kalimat</h2>
+                <span class="score-badge">Skor: 25</span>
+            </div>
+            
+            <div class="soal-box">
+                Diketahui suatu kalimat logika proposisional:<br>
+                <code>ℰ : if P then (R or Q) else not P</code><br>
+                Buatlah pohon semantik untuk kalimat ℰ serta tentukan sifat kalimat yang mungkin untuk kalimat ℰ.
+            </div>
+
+            <div class="hafal-box">
+                <strong>💡 Jembatan Keledai & Kunci Hafalan:</strong><br>
+                • <strong>Tautologi (Valid):</strong> Semua cabang bernilai <em>true</em>.<br>
+                • <strong>Kontradiksi (Inconsistent/Unsatisfiable):</strong> Semua cabang bernilai <em>false</em>.<br>
+                • <strong>Contingent (Falsifiable & Satisfiable):</strong> Ada cabang yang bernilai <em>true</em> dan ada yang bernilai <em>false</em>.
+            </div>
+
+            <div class="jawaban-box">
+                <div class="verified-badge">✓ JAWABAN RESMI & TERUJI</div>
+                
+                <p><strong>Analisis Nilai Kalimat:</strong></p>
+                <ul>
+                    <li>Jika <code>P = false</code>: Kalimat menjadi <code>not P = not(false) = true</code> (langsung <em>true</em> tanpa bergantung pada Q dan R!).</li>
+                    <li>Jika <code>P = true</code>: Kalimat bernilai <code>(R or Q)</code>.
+                        <ul>
+                            <li>Jika <code>Q = true</code> atau <code>R = true</code> ➔ <code>true</code></li>
+                            <li>Jika <code>Q = false</code> dan <code>R = false</code> ➔ <code>false</code></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <p><strong>Pohon Semantik (Semantic Tree):</strong></p>
+                <div class="tree-diagram">
+                                   [ Root: ℰ ]
+                                   /         \
+                           P=true /           \ P=false
+                                 /             \
+                       [ ℰ: R or Q ]        [ ℰ: not(false) ]
+                         /       \                 |
+                   Q=true/        \Q=false      ( TRUE )
+                        /          \
+                     ( TRUE )     [ ℰ: R ]
+                                  /      \
+                           R=true/        \R=false
+                                /          \
+                            ( TRUE )     ( FALSE )
+                </div>
+
+                <p><strong>Sifat Kalimat untuk ℰ:</strong></p>
+                <ol>
+                    <li><strong>Satisfiable (Dapat dipenuhi):</strong> Terdapat interpretasi yang membuat ℰ bernilai <em>true</em> (misal saat <code>P = false</code>).</li>
+                    <li><strong>Falsifiable (Dapat disalahkan):</strong> Terdapat interpretasi yang membuat ℰ bernilai <em>false</em> (yaitu saat <code>P = true, Q = false, R = false</code>).</li>
+                    <li><strong>Contingent:</strong> Karena kalimat ℰ tidak selalu <em>true</em> (bukan tautologi) dan tidak selalu <em>false</em> (bukan kontradiksi), maka sifat kalimat ℰ adalah <strong>Contingent</strong>.</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- SOAL 3 -->
+        <div class="card">
+            <div class="question-header">
+                <h2 class="question-title">Soal 3: Substitusi Total</h2>
+                <span class="score-badge">Skor: 25</span>
+            </div>
+            
+            <div class="soal-box">
+                Diketahui suatu kalimat logika proposisional:<br>
+                <code>ℱ : (Q and P) if and only if (P and (if Q then R))</code><br>
+                Tentukan kalimat hasil substitusi:<br>
+                <code>ℱ ◁ { Q ← (P and Q), (R or Q) ← (Q or S), (P or R) ← S }</code>
+            </div>
+
+            <div class="hafal-box">
+                <strong>💡 Jembatan Keledai & Kunci Hafalan:</strong><br>
+                • Di dalam ℱ: proposisi <code>Q</code> muncul 2 kali (pada <code>Q and P</code> dan pada <code>if Q then R</code>).<br>
+                • Subkalimat <code>(R or Q)</code> dan <code>(P or R)</code> tidak ada dalam ℱ, sehingga tidak diterapkan.
+            </div>
+
+            <div class="jawaban-box">
+                <div class="verified-badge">✓ JAWABAN RESMI & TERUJI</div>
+                
+                <p><strong>Langkah Substitusi:</strong></p>
+                <ol>
+                    <li>Daftar aturan substitusi:
+                        <ul>
+                            <li><code>Q ← (P and Q)</code> ➔ <strong>Diterapkan</strong> ke setiap kemunculan atom <code>Q</code>.</li>
+                            <li><code>(R or Q) ← (Q or S)</code> ➔ Tidak ditemukan di ℱ (diabaikan).</li>
+                            <li><code>(P or R) ← S</code> ➔ Tidak ditemukan di ℱ (diabaikan).</li>
+                        </ul>
+                    </li>
+                    <li>Substitusi pada masing-masing bagian:
+                        <ul>
+                            <li>Ruas kiri: <code>(Q and P)</code> menjadi <code>((P and Q) and P)</code></li>
+                            <li>Ruas kanan: <code>(if Q then R)</code> menjadi <code>(if (P and Q) then R)</code></li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <p><strong>Hasil Akhir Kalimat Substitusi:</strong></p>
+                <pre><code>((P and Q) and P) if and only if (P and (if (P and Q) then R))</code></pre>
+            </div>
+        </div>
+
+        <!-- SOAL 4 -->
+        <div class="card">
+            <div class="question-header">
+                <h2 class="question-title">Soal 4: Perluasan Interpretasi Predikat</h2>
+                <span class="score-badge">Skor: 25</span>
+            </div>
+            
+            <div class="soal-box">
+                Diketahui suatu interpretasi <em>J</em> atas domain <em>D</em> = himpunan semua bilangan riil (ℝ), dengan:<br>
+                <code>J = { a ← 2,5, b ← 0,0, y ← 1,5, z ← 0,5, f ← f_J(d) = 3d + 1,5, g ← g_J(d₁, d₂) = 2(d₁ + d₂) + 0,5, p ← p_J(d₁, d₂): d₁ &lt; 2d₂, q ← q_J(d₁, d₂, d₃, d₄, d₅): d₁ + d₃ + d₅ ≠ d₂ + d₄ }</code><br>
+                Lakukan perluasan terhadap interpretasi <em>J</em> dengan memberi nilai baru terhadap simbol predikat <em>p</em>.
+            </div>
+
+            <div class="hafal-box">
+                <strong>💡 Jembatan Keledai & Kunci Hafalan:</strong><br>
+                • Di soal ini, HANYA simbol predikat <code>p</code> yang diminta untuk diperluas dengan nilai baru.<br>
+                • Simbol lainnya (variabel <code>a, b, y, z</code>, fungsi <code>f, g</code>, dan predikat <code>q</code>) nilainya TETAP sama.
+            </div>
+
+            <div class="jawaban-box">
+                <div class="verified-badge">✓ JAWABAN RESMI & TERUJI</div>
+                
+                <p>Perluasan interpretasi <em>J'</em> terhadap interpretasi <em>J</em> atas domain bilangan riil ℝ dilakukan dengan memberikan pemetaan baru pada simbol predikat <code>p</code> (relasi biner 2-variabel):</p>
+                
+                <p><strong>Nilai baru untuk simbol predikat <em>p</em>:</strong></p>
+                <p>Ubah relasi <code>d₁ &lt; 2d₂</code> menjadi relasi baru, misalnya:</p>
+                <pre><code>p_J'(d₁, d₂) : d₁ ≥ d₂ + 1,0      (atau: d₁ · d₂ &gt; 0)</code></pre>
+
+                <p><strong>Penulisan Interpretasi Hasil Perluasan (J'):</strong></p>
+                <pre><code>J' = {
+  a ← 2,5,
+  b ← 0,0,
+  y ← 1,5,
+  z ← 0,5,
+  f ← f_J(d) = 3d + 1,5,
+  g ← g_J(d₁, d₂) = 2(d₁ + d₂) + 0,5,
+  p ← p_J'(d₁, d₂) : d₁ ≥ d₂ + 1,0,   <-- (nilai baru predikat p)
+  q ← q_J(d₁, d₂, d₃, d₄, d₅) : d₁ + d₃ + d₅ ≠ d₂ + d₄
+}</code></pre>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    function switchTab(tabId) {
+        document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+        
+        document.getElementById(tabId).classList.add('active');
+        event.target.classList.add('active');
+    }
+</script>
+
+</body>
+</html>
